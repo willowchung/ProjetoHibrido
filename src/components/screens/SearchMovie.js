@@ -8,7 +8,7 @@ import {
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 import * as globalStyles from '../../styles/global';
 
-export default class IntroScreen extends Component {
+export default class SearchMovie extends Component {
     OMDB_SEARCH = 'http://www.omdbapi.com/?apikey=16bfb934&s=';
     IMAGE_PLACEHOLDER = 'http://theonyxtheatre.com/wp-content/themes/onyx/img/poster-placeholder.png';
 
@@ -36,18 +36,22 @@ export default class IntroScreen extends Component {
       this.setState({json: movies.Search});
     }
 
+    showDetails = (item) => {
+      this.props.navigation.navigate("Details", {movie: item});
+    }
+
     _renderItem = ({item}) => (
       <Card>
+
         <CardItem>
           <Left>
-            <Thumbnail large source={{uri: item.Poster }} />
             <Body>
               <Text>{item.Title}</Text>
               <Text note>{item.Year}</Text>
             </Body>
           </Left>
         </CardItem>
-        <CardItem cardBody>
+        <CardItem cardBody button onPress={() => {this.showDetails(item)} }>
           <Image defaultSource={require('../../../res/poster-placeholder.png')} source={{uri: item.Poster}} style={{height: 300, width: null, flex: 1}}/>
         </CardItem>
         {/* <CardItem>
@@ -78,7 +82,7 @@ export default class IntroScreen extends Component {
 
               <Content>
                 <TextInput
-                  style={{height: 40}}
+                  style={{height: 40, fontSize: 17}}
                   placeholder="Digite o título do filme"
                   autoFocus = {true}
                   onChangeText={(text) => this.setState({text: text})}
