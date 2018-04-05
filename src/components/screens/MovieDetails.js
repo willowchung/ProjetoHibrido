@@ -51,21 +51,29 @@ export default class MovieDetails extends Component {
           <Container style={[globalStyles.COMMON_STYLES.pageContainer, styles.container]}>
             <Content>
               <Card style={{flex: 0}}>
-                <CardItem>
+                {/* <CardItem>
                   <Left>
                     <Body>
                       <Text>{this.state.movie.Title}</Text>
                       <Text note>{this.state.movie.Released}</Text>
                     </Body>
                   </Left>
-                </CardItem>
+                </CardItem> */}
                 <CardItem cardBody>
-                    <Image source={{uri: this.state.movie.Poster}} style={{height: 300, width: null, flex: 1}}/>
+                    <Image source={{uri: this.state.movie.Poster}} style={{height: 400, width: null, flex: 1}}/>
                 </CardItem>
                 <CardItem>
                   <Text>
                       {this.state.movie.Plot}
                     </Text>
+                </CardItem>
+                <CardItem>
+                  <Body>
+                    <Text>Director(s): {this.state.movie.Director}</Text>
+                    <Text style={styles.description}>Actor(s): {this.state.movie.Actors}</Text>
+                    <Text style={styles.description}>Language: {this.state.movie.Language}</Text>
+                    <Text style={styles.description}>Production: {this.state.movie.Production}</Text>
+                  </Body>
                 </CardItem>
                 <CardItem>
                   <Left>
@@ -86,5 +94,8 @@ export default class MovieDetails extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    description: {
+      marginTop: 16
     }
 });
