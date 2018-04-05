@@ -6,12 +6,11 @@ import {
     FlatList
 } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import Title from '../Title';
-import AppText from '../AppText';
 import * as globalStyles from '../../styles/global';
 
 export default class IntroScreen extends Component {
     OMDB_SEARCH = 'http://www.omdbapi.com/?apikey=16bfb934&s=';
+    IMAGE_PLACEHOLDER = 'http://theonyxtheatre.com/wp-content/themes/onyx/img/poster-placeholder.png';
 
     constructor(props) {
       super(props);
@@ -41,7 +40,7 @@ export default class IntroScreen extends Component {
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={{uri: item.Poster }} />
+            <Thumbnail large source={{uri: item.Poster }} />
             <Body>
               <Text>{item.Title}</Text>
               <Text note>{item.Year}</Text>
@@ -49,7 +48,7 @@ export default class IntroScreen extends Component {
           </Left>
         </CardItem>
         <CardItem cardBody>
-          <Image source={{uri: item.Poster}} style={{height: 300, width: null, flex: 1}}/>
+          <Image defaultSource={require('../../../res/poster-placeholder.png')} source={{uri: item.Poster}} style={{height: 300, width: null, flex: 1}}/>
         </CardItem>
         {/* <CardItem>
           <Left>
